@@ -6,7 +6,7 @@ class HomepageController extends GetxController {
   void onInit() {
     super.onInit();
     images.value = [
-      "images/banner.png",
+      "images/cakes.png",
       "images/banner2.png",
       "images/banner3.png",
     ];

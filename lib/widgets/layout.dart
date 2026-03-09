@@ -18,6 +18,7 @@ class Layout extends StatelessWidget {
     return Scaffold(
       appBar: top_navigation_bar(context, _width, _height),
       body: !Responsive.isMobileScreen(context) ? DesktopBody() : null,
+      
     );
   }
 }
