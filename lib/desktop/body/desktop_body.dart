@@ -3,7 +3,6 @@ import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
 import 'package:cravia_cakes/desktop/homescreen/home_category_tile.dart';
 import 'package:cravia_cakes/desktop/homescreen/sliding_pic.dart';
-import 'package:cravia_cakes/desktop/navbar/bottom_navbar.dart';
 import 'package:cravia_cakes/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';

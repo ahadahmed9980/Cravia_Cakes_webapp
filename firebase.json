@@ -1,0 +1,38 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "cravia-cakes",
+          "appId": "1:482330221726:android:0f79a336855b9e845e6f8f",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "cravia-cakes",
+          "configurations": {
+            "android": "1:482330221726:android:0f79a336855b9e845e6f8f",
+            "ios": "1:482330221726:ios:d3680e72db4cbaba5e6f8f",
+            "macos": "1:482330221726:ios:d3680e72db4cbaba5e6f8f",
+            "web": "1:482330221726:web:d5aab8fa3dad9c505e6f8f"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "y",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
