@@ -2,11 +2,11 @@ import 'package:cravia_cakes/constants/custom_line_container.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
 import 'package:cravia_cakes/desktop/homescreen/home_category_tile.dart';
-import 'package:cravia_cakes/desktop/homescreen/sliding_pic.dart';
+import 'package:cravia_cakes/constants/sliding_pic.dart';
 import 'package:cravia_cakes/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get.dart';
+
 
 class DesktopBody extends StatelessWidget {
   const DesktopBody({super.key});
@@ -15,7 +15,8 @@ class DesktopBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    final controller = Get.put(HomepageController());
+    // final controller = Get.put(HomepageController(), );
+     final HomepageController controller = Get.find();
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(left: 75, right: 70, top: 35),
@@ -24,13 +25,15 @@ class DesktopBody extends StatelessWidget {
 
         child: Column(
           children: [
+            //sliding pic
             SlidingPic(),
+
             CustomLineContainer(text: "Shop by Category", callback: () {}),
+
             Container(
               decoration: BoxDecoration(
                 color: whit,
                 borderRadius: BorderRadius.circular(6),
-                // borderRadius: BorderRadius.circular(15)
               ),
 
               margin: EdgeInsets.only(top: _height * 0.029),
@@ -39,25 +42,31 @@ class DesktopBody extends StatelessWidget {
               width: double.infinity,
               height: _height * 0.35,
 
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+              // home category
+              child: Obx(() {
+                if (controller.isloading.value) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (controller.category.isEmpty) {
+                  return Center(child: Text("No categories found"));
+                }
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.category.length,
+                  itemBuilder: (context, index) {
+                    final doc = controller.category[index];
+                    final docId = index;
+                    final title = doc["text"] ?? "no";
+                    final image = doc["image"] ?? "no imge";
 
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                    HomeCategoryTile(),
-                  ],
-                ),
-              ),
+                    return HomeCategoryTile(
+                      title: title,
+                      image: image,
+                      index: docId,
+                    );
+                  },
+                );
+              }),
             ),
 
             // SizedBox(height: 50),
@@ -91,8 +100,8 @@ class DesktopBody extends StatelessWidget {
               imageUrl: "images/custom.png",
               callback: () {},
             ),
-          Footer(),
-         
+            Footer(),
+
             SizedBox(height: 10),
           ],
         ),

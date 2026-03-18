@@ -1,9 +1,33 @@
+import 'package:cloudinary_flutter/cloudinary_context.dart';
+import 'package:cloudinary_flutter/image/cld_image.dart';
+import 'package:cloudinary_url_gen/cloudinary.dart';
+import 'package:cravia_cakes/routes/app_routes.dart';
+
 import 'package:cravia_cakes/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-void main() {
+
+void main() async {
+  CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
+    cloudName: "ddtkuouuw",
+  );
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCEzRoM3oIyR9-i0hoeCFUBb6U3wdTtT0s",
+      authDomain: "cravia-webapp.firebaseapp.com",
+      projectId: "cravia-webapp",
+      storageBucket: "cravia-webapp.firebasestorage.app",
+      messagingSenderId: "32838483646",
+      appId: "1:32838483646:web:ddc69d499e6f221467a8ef",
+      measurementId: "G-MBPX215WCL",
+    ),
+  );
+
   runApp(const MyApp());
 }
 
@@ -12,6 +36,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: "/",
+      getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -38,6 +64,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final String publicId = 'main-sample';
   int _counter = 0;
 
   void _incrementCounter() {
@@ -54,21 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: SizedBox(
+          width: 500,
+          height: 500,
+          child: CldImageWidget(
+            publicId: publicId, // named parameter
+            width: 500,
+            height: 500,
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

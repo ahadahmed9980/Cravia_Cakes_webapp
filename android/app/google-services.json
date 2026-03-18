@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "482330221726",
-    "project_id": "cravia-cakes",
-    "storage_bucket": "cravia-cakes.firebasestorage.app"
+    "project_number": "32838483646",
+    "project_id": "cravia-webapp",
+    "storage_bucket": "cravia-webapp.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:482330221726:android:0f79a336855b9e845e6f8f",
+        "mobilesdk_app_id": "1:32838483646:android:690fe9c7a1ff368d67a8ef",
         "android_client_info": {
           "package_name": "com.example.cravia_cakes"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAkBaDnSI1UwMNgCgHArM75IKuN5J-BpK4"
+          "current_key": "AIzaSyA1wMrw9PKF8oWTNkT-W8no0lptNs4OHwM"
         }
       ],
       "services": {

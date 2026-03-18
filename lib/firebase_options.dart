@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBoikmdm1D8xYWxXP18pp_nwDyLndozSVc',
-    appId: '1:482330221726:web:d5aab8fa3dad9c505e6f8f',
-    messagingSenderId: '482330221726',
-    projectId: 'cravia-cakes',
-    authDomain: 'cravia-cakes.firebaseapp.com',
-    storageBucket: 'cravia-cakes.firebasestorage.app',
-    measurementId: 'G-S0G0MH6HB6',
+    apiKey: 'AIzaSyCEzRoM3oIyR9-i0hoeCFUBb6U3wdTtT0s',
+    appId: '1:32838483646:web:ddc69d499e6f221467a8ef',
+    messagingSenderId: '32838483646',
+    projectId: 'cravia-webapp',
+    authDomain: 'cravia-webapp.firebaseapp.com',
+    storageBucket: 'cravia-webapp.firebasestorage.app',
+    measurementId: 'G-MBPX215WCL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAkBaDnSI1UwMNgCgHArM75IKuN5J-BpK4',
-    appId: '1:482330221726:android:0f79a336855b9e845e6f8f',
-    messagingSenderId: '482330221726',
-    projectId: 'cravia-cakes',
-    storageBucket: 'cravia-cakes.firebasestorage.app',
+    apiKey: 'AIzaSyA1wMrw9PKF8oWTNkT-W8no0lptNs4OHwM',
+    appId: '1:32838483646:android:690fe9c7a1ff368d67a8ef',
+    messagingSenderId: '32838483646',
+    projectId: 'cravia-webapp',
+    storageBucket: 'cravia-webapp.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDAKoU04fLQ7w6uu9unCEWGsgFkzjqIcv0',
-    appId: '1:482330221726:ios:d3680e72db4cbaba5e6f8f',
-    messagingSenderId: '482330221726',
-    projectId: 'cravia-cakes',
-    storageBucket: 'cravia-cakes.firebasestorage.app',
+    apiKey: 'AIzaSyCpOnmpUawMF46CGJedjqPMaVp10AwdRjo',
+    appId: '1:32838483646:ios:ec535abb4668434767a8ef',
+    messagingSenderId: '32838483646',
+    projectId: 'cravia-webapp',
+    storageBucket: 'cravia-webapp.firebasestorage.app',
     iosBundleId: 'com.example.craviaCakes',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDAKoU04fLQ7w6uu9unCEWGsgFkzjqIcv0',
-    appId: '1:482330221726:ios:d3680e72db4cbaba5e6f8f',
-    messagingSenderId: '482330221726',
-    projectId: 'cravia-cakes',
-    storageBucket: 'cravia-cakes.firebasestorage.app',
+    apiKey: 'AIzaSyCpOnmpUawMF46CGJedjqPMaVp10AwdRjo',
+    appId: '1:32838483646:ios:ec535abb4668434767a8ef',
+    messagingSenderId: '32838483646',
+    projectId: 'cravia-webapp',
+    storageBucket: 'cravia-webapp.firebasestorage.app',
     iosBundleId: 'com.example.craviaCakes',
   );
 }
