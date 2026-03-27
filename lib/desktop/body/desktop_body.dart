@@ -7,7 +7,6 @@ import 'package:cravia_cakes/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class DesktopBody extends StatelessWidget {
   const DesktopBody({super.key});
 
@@ -16,7 +15,7 @@ class DesktopBody extends StatelessWidget {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     // final controller = Get.put(HomepageController(), );
-     final HomepageController controller = Get.find();
+    final HomepageController controller = Get.find();
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(left: 75, right: 70, top: 35),
@@ -100,6 +99,7 @@ class DesktopBody extends StatelessWidget {
               imageUrl: "images/custom.png",
               callback: () {},
             ),
+
             Footer(),
 
             SizedBox(height: 10),

@@ -1,5 +1,6 @@
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
+import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
 
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeCategoryTile extends StatelessWidget {
   final controller = Get.find<HomepageController>();
+  final controller2 = Get.find<CategoryProductsController>();
 
   //all product controller
 
@@ -37,7 +39,12 @@ class HomeCategoryTile extends StatelessWidget {
       child: Obx(
         () => GestureDetector(
           onTap: () {
-            Get.toNamed("/category/all_products_detail");
+            print("The index at home category tile is ${index}");
+            Get.toNamed("/category/category_1", arguments: index);
+            controller2.selectedProduct.value = index;
+            print(
+              "contriller product selected value is now  ${controller2.selectedProduct}",
+            );
           },
           child: AspectRatio(
             aspectRatio: 0.8,
@@ -109,7 +116,7 @@ class HomeCategoryTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
+                  Flexible(
                     child: Container(
                       decoration: BoxDecoration(
                         color: dark,

@@ -34,9 +34,10 @@ class HomepageController extends GetxController {
           .collection("Category_Cravia")
           .get();
       category.value = snapshot.docs.map((doc) {
+         final data = doc.data();
         return {
-          "text": doc["text"] ?? "no title",
-          "image": doc["image"] ?? "no",
+          "text": data["text"] ?? "no title",
+          "image": data["image"] ?? "no",
         };
       }).toList();
     } catch (e) {

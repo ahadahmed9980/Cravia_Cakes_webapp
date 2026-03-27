@@ -77,6 +77,7 @@ class desktop_navbar extends StatelessWidget {
                     ),
                   ),
                 ),
+                //search bar
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 0.09,
