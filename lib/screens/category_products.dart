@@ -17,7 +17,7 @@ class CategoryProducts extends StatelessWidget {
 
     final String data = Get.arguments.toString();
     controller.selectedProduct = data;
-    controller.fetchingcategoryproducts();
+    // controller.fetchingcategoryproducts(data);
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
@@ -86,12 +86,22 @@ class CategoryProducts extends StatelessWidget {
                                 );
                               }
                               return GridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 4, // Ek line mein 2 cakes
+                                    // SliverGridDelegateWithMaxCrossAxisExtent(
+                                    //   maxCrossAxisExtent: _width * 0.25,
+                                    //   crossAxisSpacing: 10,
+                                    //   mainAxisSpacing: 10,
+                                    //   childAspectRatio:  _width*0.25 / _width
+                                    // ),
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                      maxCrossAxisExtent: 300,
+
                                       crossAxisSpacing: 10,
                                       mainAxisSpacing: 10,
-                                      childAspectRatio: 0.6
+                                      childAspectRatio:
+                                          _width * 0.25 / (_width / 2.5),
                                     ),
                                 itemCount: controller.CategoryProduct.length,
                                 itemBuilder: (context, index) {

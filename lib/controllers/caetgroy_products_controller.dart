@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +16,9 @@ class CategoryProductsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+     selectedProduct = Get.arguments ?? "";
 
+    fetchingcategoryproducts(); 
   }
 
   Future<void> fetchingcategoryproducts() async {
@@ -39,7 +40,6 @@ class CategoryProductsController extends GetxController {
           "price": int.tryParse(data["price"].toString()) ?? 0,
         };
       }).toList();
-
     } catch (e) {
       print("Error fetching category products: $e");
     } finally {

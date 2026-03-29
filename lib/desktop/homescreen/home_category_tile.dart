@@ -40,6 +40,8 @@ class HomeCategoryTile extends StatelessWidget {
       child: Obx(
         () => GestureDetector(
           onTap: () {
+            print(_height);
+            print(_width);
             Get.toNamed("/category/category_1", arguments: categoryid);
           },
           child: AspectRatio(
