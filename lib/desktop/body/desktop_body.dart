@@ -14,7 +14,7 @@ class DesktopBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    // final controller = Get.put(HomepageController(), );
+
     final HomepageController controller = Get.find();
     return SingleChildScrollView(
       child: Container(
@@ -54,14 +54,15 @@ class DesktopBody extends StatelessWidget {
                   itemCount: controller.category.length,
                   itemBuilder: (context, index) {
                     final doc = controller.category[index];
-                    final docId = index;
+                   final String categoryId = doc["id"] ?? "";
                     final title = doc["text"] ?? "no";
                     final image = doc["image"] ?? "no imge";
 
                     return HomeCategoryTile(
                       title: title,
                       image: image,
-                      index: docId,
+                      index: index,
+                      categoryid: categoryId,
                     );
                   },
                 );

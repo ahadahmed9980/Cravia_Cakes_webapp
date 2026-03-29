@@ -30,14 +30,16 @@ class HomepageController extends GetxController {
   Future<void> fetchingcategory() async {
     try {
       isloading.value = true;
-      final snapshot = await FirebaseFirestore.instance
+      final firestore = await FirebaseFirestore.instance
           .collection("Category_Cravia")
           .get();
-      category.value = snapshot.docs.map((doc) {
-         final data = doc.data();
+
+      category.value = firestore.docs.map((doc) {
+        final data = doc.data();
         return {
           "text": data["text"] ?? "no title",
           "image": data["image"] ?? "no",
+          "id": doc.id,
         };
       }).toList();
     } catch (e) {

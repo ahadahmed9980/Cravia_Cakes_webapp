@@ -9,18 +9,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeCategoryTile extends StatelessWidget {
   final controller = Get.find<HomepageController>();
-  final controller2 = Get.find<CategoryProductsController>();
 
   //all product controller
 
   String title;
   String image;
   int index;
+  final String categoryid;
 
   HomeCategoryTile({
     required this.image,
     required this.title,
     required this.index,
+    required this.categoryid,
     super.key,
   });
 
@@ -39,12 +40,7 @@ class HomeCategoryTile extends StatelessWidget {
       child: Obx(
         () => GestureDetector(
           onTap: () {
-            print("The index at home category tile is ${index}");
-            Get.toNamed("/category/category_1", arguments: index);
-            controller2.selectedProduct.value = index;
-            print(
-              "contriller product selected value is now  ${controller2.selectedProduct}",
-            );
+            Get.toNamed("/category/category_1", arguments: categoryid);
           },
           child: AspectRatio(
             aspectRatio: 0.8,

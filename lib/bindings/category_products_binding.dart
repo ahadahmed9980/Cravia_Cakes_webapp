@@ -5,6 +5,6 @@ import 'package:get/get_core/src/get_main.dart';
 class CategoryProductsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(CategoryProductsController());
+  Get.lazyPut(() => CategoryProductsController());
   }
 }

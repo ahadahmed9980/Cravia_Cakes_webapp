@@ -14,7 +14,11 @@ class CategoryProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CategoryProductsController>();
-    final data = Get.arguments;
+
+    final String data = Get.arguments.toString();
+    controller.selectedProduct = data;
+    controller.fetchingcategoryproducts();
+
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
@@ -29,7 +33,7 @@ class CategoryProducts extends StatelessWidget {
                 child: Column(
                   children: [
                     //custom container pic
-                    CustomContainerPic(index: data, image: "uuuuuu"),
+                    // CustomContainerPic(index: image: "uuuuuu"),
                     Container(
                       decoration: BoxDecoration(
                         color: whit,
@@ -59,7 +63,55 @@ class CategoryProducts extends StatelessWidget {
                           //
                           SizedBox(height: 10),
                           //main product container
-                          CategoryProductBox(index: data),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: whit,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+
+                            margin: EdgeInsets.only(top: _height * 0.029),
+
+                            padding: EdgeInsets.all(14),
+                            width: double.infinity,
+                            height: _height * 1,
+                            child: Obx(() {
+                              if (controller.isLoading.value) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              if (controller.CategoryProduct.isEmpty) {
+                                return Center(
+                                  child: Text("No categories found"),
+                                );
+                              }
+                              return GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 4, // Ek line mein 2 cakes
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                      childAspectRatio: 0.6
+                                    ),
+                                itemCount: controller.CategoryProduct.length,
+                                itemBuilder: (context, index) {
+                                  final doc = controller.CategoryProduct[index];
+                                  final title = doc["text"] ?? "no";
+                                  final image = doc["image"] ?? "no imge";
+                                  final description =
+                                      doc["description"] ?? "...";
+                                  final price = doc["price"] ?? "";
+                                  return CategoryProductBox(
+                                    description: description,
+                                    image: image,
+                                    title: title,
+                                    price: price,
+                                    index: index,
+                                  );
+                                },
+                              );
+                            }),
+                          ),
                         ],
                       ),
                     ),
