@@ -1,6 +1,5 @@
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
-import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
 
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeCategoryTile extends StatelessWidget {
   final controller = Get.find<HomepageController>();
-
   //all product controller
-
   String title;
   String image;
   int index;
@@ -40,9 +37,8 @@ class HomeCategoryTile extends StatelessWidget {
       child: Obx(
         () => GestureDetector(
           onTap: () {
-            print(_height);
-            print(_width);
-            Get.toNamed("/category/category_1", arguments: categoryid);
+            String slug = title.trim().replaceAll(' ', '-').toLowerCase();
+            Get.toNamed("/category/$slug", arguments: categoryid);
           },
           child: AspectRatio(
             aspectRatio: 0.8,

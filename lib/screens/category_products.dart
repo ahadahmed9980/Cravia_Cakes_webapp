@@ -4,9 +4,11 @@ import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
 import 'package:cravia_cakes/widgets/category_product_box.dart';
-import 'package:cravia_cakes/widgets/top_navigation_bar.dart';
+import 'package:cravia_cakes/navbar/footer.dart';
+import 'package:cravia_cakes/navbar/top_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoryProducts extends StatelessWidget {
   const CategoryProducts({super.key});
@@ -17,11 +19,57 @@ class CategoryProducts extends StatelessWidget {
 
     final String data = Get.arguments.toString();
     controller.selectedProduct = data;
-    // controller.fetchingcategoryproducts(data);
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    //logic  crossasixcount
+    int customcrossAxisCount;
+    double customaspectratio;
 
+    if (_width >= 1093) {
+      // Desktop
+      customcrossAxisCount = 4;
+      customaspectratio = 0.59;
+    } else if (_width >= 1051) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.77;
+    } else if (_width >= 921) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.69;
+    } else if (_width >= 891) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.67;
+    } else if (_width >= 817) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.62;
+    } else if (_width >= 789) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.60;
+    } else if (_width >= 727) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.55;
+    } 
+    else if (_width >= 665) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.50;
+    }
+    else if (_width >= 500) {
+      // Tablet
+      customcrossAxisCount = 3;
+      customaspectratio = 0.43;
+    }else {
+      // Mobile
+      customcrossAxisCount = 2;
+      customaspectratio = 0.60;
+    
+    }
     return Scaffold(
       appBar: top_navigation_bar(context, _width, _height),
       body: !Responsive.isMobileScreen(context)
@@ -29,11 +77,35 @@ class CategoryProducts extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Container(
                 margin: EdgeInsets.only(left: 75, right: 70, top: 35),
-                width: _width,
+                width: double.infinity,
                 child: Column(
                   children: [
                     //custom container pic
-                    // CustomContainerPic(index: image: "uuuuuu"),
+                    Obx(() {
+                      if (controller.isLoading_Product_Banner.value) {
+                        return AspectRatio(
+                          aspectRatio: 16 / 5,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Skeletonizer(
+                              enabled: true,
+                              child: Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                color: const Color.fromARGB(255, 210, 209, 209),
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      if (controller.category_Product_Banner.isEmpty) {
+                        return Center(child: Text("No image found"));
+                      }
+                      return CustomContainerPic(
+                        image: controller.category_Product_Banner[0]["image"],
+                      );
+                    }),
+
                     Container(
                       decoration: BoxDecoration(
                         color: whit,
@@ -53,11 +125,17 @@ class CategoryProducts extends StatelessWidget {
                             height: 60,
                             width: _width,
                             // color: Colors.black,
-                            child: CustomText(
-                              text: "Cracia Cakes",
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              size: 20,
+                            child: InkWell(
+                              onTap: () {
+                                print("width..... ${_width}");
+                                print("height..... ${_height}");
+                              },
+                              child: CustomText(
+                                text: "Cracia Cakes",
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                size: 20,
+                              ),
                             ),
                           ),
                           //
@@ -73,7 +151,7 @@ class CategoryProducts extends StatelessWidget {
 
                             padding: EdgeInsets.all(14),
                             width: double.infinity,
-                            height: _height * 1,
+
                             child: Obx(() {
                               if (controller.isLoading.value) {
                                 return Center(
@@ -89,34 +167,30 @@ class CategoryProducts extends StatelessWidget {
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 gridDelegate:
-                                    // SliverGridDelegateWithMaxCrossAxisExtent(
-                                    //   maxCrossAxisExtent: _width * 0.25,
-                                    //   crossAxisSpacing: 10,
-                                    //   mainAxisSpacing: 10,
-                                    //   childAspectRatio:  _width*0.25 / _width
-                                    // ),
-                                    SliverGridDelegateWithMaxCrossAxisExtent(
-                                      maxCrossAxisExtent: 300,
-
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: customcrossAxisCount,
                                       crossAxisSpacing: 10,
                                       mainAxisSpacing: 10,
-                                      childAspectRatio:
-                                          _width * 0.25 / (_width / 2.5),
+
+                                      childAspectRatio: customaspectratio,
                                     ),
                                 itemCount: controller.CategoryProduct.length,
                                 itemBuilder: (context, index) {
                                   final doc = controller.CategoryProduct[index];
-                                  final title = doc["text"] ?? "no";
-                                  final image = doc["image"] ?? "no imge";
-                                  final description =
-                                      doc["description"] ?? "...";
-                                  final price = doc["price"] ?? "";
-                                  return CategoryProductBox(
-                                    description: description,
-                                    image: image,
-                                    title: title,
-                                    price: price,
-                                    index: index,
+
+                                  return Center(
+                                    child: ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        maxWidth: 250,
+                                      ),
+                                      child: CategoryProductBox(
+                                        description: doc["description"] ?? "",
+                                        image: doc["image"] ?? "",
+                                        title: doc["text"] ?? "",
+                                        price: doc["price"] ?? 0,
+                                        index: index,
+                                      ),
+                                    ),
                                   );
                                 },
                               );
@@ -125,6 +199,9 @@ class CategoryProducts extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: 10),
+                    Footer(),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),

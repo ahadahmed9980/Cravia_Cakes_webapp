@@ -1,7 +1,7 @@
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
 import 'package:cravia_cakes/desktop/body/desktop_body.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
-import 'package:cravia_cakes/widgets/top_navigation_bar.dart';
+import 'package:cravia_cakes/navbar/top_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart' show Inst;

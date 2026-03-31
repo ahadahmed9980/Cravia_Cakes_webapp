@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/route_manager.dart';
 
 class CategoryProductBox extends StatelessWidget {
   final controller = Get.find<CategoryProductsController>();
@@ -39,7 +42,9 @@ class CategoryProductBox extends StatelessWidget {
       child: Obx(
         //inkwell
         () => InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed("/category/cakes/detail");
+          },
           child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -48,17 +53,18 @@ class CategoryProductBox extends StatelessWidget {
                 color: controller.selected_index.value == index
                     ? dark
                     : const Color.fromARGB(255, 202, 215, 223),
-                width: 1.5,
+                width: 1.9,
               ),
             ),
-            height: 400,
-            width: 280,
+
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 //pic adjust container
                 Container(
                   // height: 250,
-                  height: _height * 0.43,
+                  padding: EdgeInsets.all(3),
 
                   width: double.infinity,
 
@@ -67,6 +73,7 @@ class CategoryProductBox extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       //wishlist heart
                       Row(
@@ -92,29 +99,22 @@ class CategoryProductBox extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: _height * 0.02),
 
                       //image
                       SizedBox(
                         width: _width,
-                        height: 160,
 
-                        // height: _height*0.3,
+                        height: _width * 0.13,
+                        // height: 220,
                         child: CachedNetworkImage(
                           imageUrl: image.trim(),
                           fit: BoxFit.contain,
-                          placeholder: (context, url) => Center(
-                            child: SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            ),
-                          ),
+
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
                         ),
                       ),
-                      SizedBox(height: 15),
+
                       // dark blue box
                       Container(
                         padding: EdgeInsets.all(3),
@@ -122,50 +122,59 @@ class CategoryProductBox extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: dark,
                         ),
-                        height: 20,
+
                         child: CustomText(
                           text: "New",
                           size: 10,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      SizedBox(height: 10),
+                      // SizedBox(height: _width * 0.005),
                     ],
                   ),
                 ),
                 // detail part
                 Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 3),
+                    // SizedBox(height: _width * 0.01),
                     CustomText(
                       text: title,
                       color: Colors.black,
                       fontWeight: FontWeight.w900,
                     ),
-                    SizedBox(height: 11),
+
+                    SizedBox(height: _width * 0.015),
                     Text(
                       description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
 
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 9),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
-                    SizedBox(height: 11),
+
+                    SizedBox(height: _width * 0.015),
                     //price
                     CustomText(
-                      text: price.toString(),
+                      text: "Rs. ${price}",
                       color: Colors.deepOrange,
-                      size: 13,
+                      size: 17,
                       fontWeight: FontWeight.w900,
                     ),
-                    SizedBox(height: 3),
+
+                    SizedBox(height: _width * 0.003),
                     //add to cart
                     InkWell(
                       onTap: () {},
                       child: Container(
-                        height: 30,
-
-                        padding: EdgeInsets.all(6),
+                        // height: 30,
+                        padding: EdgeInsets.all(9),
                         decoration: BoxDecoration(
                           color: dark,
                           borderRadius: BorderRadius.circular(8),

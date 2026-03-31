@@ -47,9 +47,7 @@ class MyApp extends StatelessWidget {
               bodyColor: Colors.black,
               fontFamilyFallback: const ['Roboto', 'Corben'],
             ),
-        // colorScheme: .fromSeed(seedColor: Color(0xFF1B1485)),
       ),
-      home: Layout(),
     );
   }
 }

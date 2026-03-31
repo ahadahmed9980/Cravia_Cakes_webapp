@@ -1,8 +1,8 @@
 
-import 'package:cravia_cakes/desktop/navbar/bottom_navbar.dart';
+import 'package:cravia_cakes/navbar/bottom_navbar.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
-import 'package:cravia_cakes/desktop/navbar/desktop_navbar.dart';
-import 'package:cravia_cakes/mobile/navbar/mobile_navbar.dart';
+import 'package:cravia_cakes/navbar/desktop_navbar.dart';
+import 'package:cravia_cakes/navbar/mobile_navbar.dart';
 import 'package:flutter/material.dart';
 
 AppBar top_navigation_bar(BuildContext context, double _width, double _height) {

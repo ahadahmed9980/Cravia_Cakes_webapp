@@ -1,9 +1,9 @@
 import 'package:cravia_cakes/constants/custom_line_container.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/homepage_controller.dart';
-import 'package:cravia_cakes/desktop/homescreen/home_category_tile.dart';
+import 'package:cravia_cakes/widgets/home_category_tile.dart';
 import 'package:cravia_cakes/constants/sliding_pic.dart';
-import 'package:cravia_cakes/widgets/footer.dart';
+import 'package:cravia_cakes/navbar/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,7 +54,7 @@ class DesktopBody extends StatelessWidget {
                   itemCount: controller.category.length,
                   itemBuilder: (context, index) {
                     final doc = controller.category[index];
-                   final String categoryId = doc["id"] ?? "";
+                    final String categoryId = doc["id"] ?? "";
                     final title = doc["text"] ?? "no";
                     final image = doc["image"] ?? "no imge";
 
@@ -100,7 +100,7 @@ class DesktopBody extends StatelessWidget {
               imageUrl: "images/custom.png",
               callback: () {},
             ),
-
+           SizedBox(height: 10),
             Footer(),
 
             SizedBox(height: 10),
