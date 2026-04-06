@@ -117,7 +117,10 @@ class CategoryProductBox extends StatelessWidget {
 
                       // dark blue box
                       Container(
-                        padding: EdgeInsets.all(3),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 3,
+                          horizontal: 7,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: dark,
@@ -130,7 +133,7 @@ class CategoryProductBox extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      // SizedBox(height: _width * 0.005),
+                    
                     ],
                   ),
                 ),

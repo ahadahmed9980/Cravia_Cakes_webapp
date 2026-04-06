@@ -54,21 +54,18 @@ class CategoryProducts extends StatelessWidget {
       // Tablet
       customcrossAxisCount = 3;
       customaspectratio = 0.55;
-    } 
-    else if (_width >= 665) {
+    } else if (_width >= 665) {
       // Tablet
       customcrossAxisCount = 3;
       customaspectratio = 0.50;
-    }
-    else if (_width >= 500) {
+    } else if (_width >= 500) {
       // Tablet
       customcrossAxisCount = 3;
       customaspectratio = 0.43;
-    }else {
+    } else {
       // Mobile
       customcrossAxisCount = 2;
       customaspectratio = 0.60;
-    
     }
     return Scaffold(
       appBar: top_navigation_bar(context, _width, _height),
@@ -110,6 +107,14 @@ class CategoryProducts extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: whit,
                         borderRadius: BorderRadius.circular(6),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 0.3,
+                            blurRadius: 2,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
                       ),
 
                       margin: EdgeInsets.only(top: _height * 0.029),

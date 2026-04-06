@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryProductsController extends GetxController {
@@ -18,8 +17,6 @@ class CategoryProductsController extends GetxController {
 
     fetchingcategoryproducts();
     fetchingcategoryproductbanner();
-    // fetchingcategoryproductbanner();
-    
   }
   //product section
 

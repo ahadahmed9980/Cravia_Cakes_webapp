@@ -2,8 +2,6 @@ import 'package:cloudinary_flutter/cloudinary_context.dart';
 import 'package:cloudinary_flutter/image/cld_image.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
 import 'package:cravia_cakes/routes/app_routes.dart';
-
-import 'package:cravia_cakes/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';

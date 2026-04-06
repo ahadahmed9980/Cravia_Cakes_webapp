@@ -36,8 +36,9 @@ class CustomLineContainer extends StatelessWidget {
                 child: CustomText(
                   text: text,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                   size: size ?? 13,
+
                 ),
               ),
               Expanded(child: Container(height: 1.5, color: Colors.black12)),

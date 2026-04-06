@@ -17,6 +17,7 @@ class DesktopBody extends StatelessWidget {
 
     final HomepageController controller = Get.find();
     return SingleChildScrollView(
+
       child: Container(
         margin: EdgeInsets.only(left: 75, right: 70, top: 35),
         // height: _height,
@@ -24,6 +25,7 @@ class DesktopBody extends StatelessWidget {
 
         child: Column(
           children: [
+            
             //sliding pic
             SlidingPic(),
 

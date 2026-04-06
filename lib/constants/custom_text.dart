@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final FontWeight? fontWeight;
   final bool? softwrap;
   final int? maxlines;
+
   const CustomText({
     super.key,
     required this.text,
@@ -16,6 +17,7 @@ class CustomText extends StatelessWidget {
     this.fontWeight,
     this.softwrap,
     this.maxlines,
+   
   });
 
   @override
@@ -26,10 +28,13 @@ class CustomText extends StatelessWidget {
         fontSize: size ?? 14,
         color: color ?? whit,
         fontWeight: fontWeight ?? FontWeight.normal,
+        fontFamily: "Poppins"
       ),
       softWrap: softwrap,
       maxLines: maxlines,
       overflow: TextOverflow.ellipsis,
+      
     );
+
   }
 }
