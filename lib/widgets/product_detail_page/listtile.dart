@@ -1,23 +1,21 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
-import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
+import 'package:cravia_cakes/controllers/product_detail_page_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/route_manager.dart';
 
-class CategoryProductBox extends StatelessWidget {
-  final controller = Get.find<CategoryProductsController>();
-  int index;
-  String title;
-  String description;
-  int price;
-  String image;
+class Listtile extends StatelessWidget {
+  final int index;
+  final String title;
+  final String description;
+  final int price;
+  final String image;
 
-  CategoryProductBox({
+  const Listtile({
     required this.description,
     required this.image,
     required this.title,
@@ -28,9 +26,9 @@ class CategoryProductBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+     final controller = Get.find<ProductDetailPageController>();
+     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-
     return MouseRegion(
       onEnter: (_) {
         controller.selected_index.value = index;
