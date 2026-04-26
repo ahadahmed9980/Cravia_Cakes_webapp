@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
@@ -11,6 +9,7 @@ import 'package:get/route_manager.dart';
 
 class CategoryProductBox extends StatelessWidget {
   final controller = Get.find<CategoryProductsController>();
+  
   int index;
   String title;
   String description;
@@ -27,7 +26,9 @@ class CategoryProductBox extends StatelessWidget {
   });
 
   @override
+  
   Widget build(BuildContext context) {
+   
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
@@ -42,7 +43,11 @@ class CategoryProductBox extends StatelessWidget {
         //inkwell
         () => InkWell(
           onTap: () {
-            Get.toNamed("/category/cakes/detail",arguments: controller.CategoryProduct[index]);
+            
+            Get.toNamed(
+              "/category/cakes/detail",
+              arguments: controller.CategoryProduct[index],
+            );
           },
           child: Container(
             padding: EdgeInsets.all(8),
@@ -132,7 +137,6 @@ class CategoryProductBox extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                    
                     ],
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:cravia_cakes/constants/custom_container_pic.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
+import 'package:cravia_cakes/controllers/product_detail_page_controller.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
 import 'package:cravia_cakes/widgets/category_product_box.dart';
 import 'package:cravia_cakes/navbar/footer.dart';
@@ -16,9 +17,12 @@ class CategoryProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CategoryProductsController>();
+    final product_detail_page_controller =
+        Get.find<ProductDetailPageController>();
 
     final String data = Get.arguments.toString();
     controller.selectedProduct = data;
+    product_detail_page_controller.selectedcatageory = data;
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;

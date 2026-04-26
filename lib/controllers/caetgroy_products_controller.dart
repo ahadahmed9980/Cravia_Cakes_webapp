@@ -33,6 +33,7 @@ class CategoryProductsController extends GetxController {
       CategoryProduct.value = firestore.docs.map((doc) {
         final data = doc.data();
         return {
+          "id":doc.id,
           "text": data["text"] ?? "no title",
           "image": data["image"] ?? "no",
           "description": data["description"] ?? "...",

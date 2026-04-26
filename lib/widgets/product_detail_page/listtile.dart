@@ -40,7 +40,7 @@ class Listtile extends StatelessWidget {
         //inkwell
         () => InkWell(
           onTap: () {
-            Get.toNamed("/category/cakes/detail",arguments: controller.CategoryProduct[index]);
+            // Get.toNamed("/category/cakes/detail",arguments: controller.CategoryProduct[index]);
           },
           child: Container(
             padding: EdgeInsets.all(8),
