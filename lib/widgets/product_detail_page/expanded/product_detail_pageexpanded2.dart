@@ -10,18 +10,19 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
   final String title;
   final String description;
   final int price;
-  const ProductDetailPageexpanded2({
+   final controller = Get.find<ProductDetailPageController>();
+ ProductDetailPageexpanded2({
     required this.title,
     required this.description,
     required this.price,
 
     super.key,
   });
-
+ 
   @override
   Widget build(BuildContext context) {
     // int quantity = 0;
-    final controller = Get.put(ProductDetailPageController());
+  
     return Container(
       child: Expanded(
         flex: 5,
@@ -239,17 +240,22 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
+              //remove or less
               Row(
                 children: [
-                  Container(
+                 Obx(()=>
+                 MouseRegion(onEnter: (_)=>controller.islesshovering.value=true,
+                 onExit: (_)=>controller.islesshovering.value=false,
+                 child:  Container(
                     height: 30,
                     width: 30,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.deepOrange,
+                      color: controller.islesshovering.value?dark:Colors.deepOrange,
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: IconButton(
+                      
                       padding: null,
                       onPressed: () {
                         controller.remove();
@@ -257,7 +263,11 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
                       icon: Icon(Icons.remove, color: whit, size: 15),
                     ),
                   ),
-                  // SizedBox(width: 10),
+                 
+                 ),
+                 
+                 ),
+                
                   // quantity
                   Container(
                     alignment: Alignment.center,
@@ -278,20 +288,29 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 30,
-                    width: 30,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.deepOrange,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: IconButton(
-                      padding: null,
-                      onPressed: () {
-                        controller.add();
-                      },
-                      icon: Icon(Icons.add, color: whit, size: 15),
+                  //add button 
+                  Obx(
+                    () => MouseRegion(
+                      onEnter: (_) => controller.isaddhovering.value = true,
+                      onExit: (_) => controller.isaddhovering.value = false,
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: controller.isaddhovering.value
+                              ? dark
+                              : Colors.deepOrange,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: IconButton(
+                          padding: null,
+                          onPressed: () {
+                            controller.add();
+                          },
+                          icon: Icon(Icons.add, color: whit, size: 15),
+                        ),
+                      ),
                     ),
                   ),
                   Spacer(),

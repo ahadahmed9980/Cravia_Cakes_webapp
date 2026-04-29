@@ -7,7 +7,5 @@ class CategoryProductsBinding extends Bindings {
   @override
   void dependencies() {
   Get.lazyPut(() => CategoryProductsController());
-  Get.lazyPut(() => ProductDetailPageController());
-
   }
 }

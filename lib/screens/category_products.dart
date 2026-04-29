@@ -12,21 +12,25 @@ import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoryProducts extends StatelessWidget {
-  const CategoryProducts({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+ CategoryProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CategoryProductsController>();
+    // final product_detail_page_controller =
+    //     Get.find<ProductDetailPageController>();
     final product_detail_page_controller =
-        Get.find<ProductDetailPageController>();
+        Get.put(ProductDetailPageController(),permanent: true);
 
     final String data = Get.arguments.toString();
     controller.selectedProduct = data;
     product_detail_page_controller.selectedcatageory = data;
+    print("thisssssssssssssss ${controller.selectedProduct}");
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    //logic  crossasixcount
+  
     int customcrossAxisCount;
     double customaspectratio;
 
@@ -72,7 +76,7 @@ class CategoryProducts extends StatelessWidget {
       customaspectratio = 0.60;
     }
     return Scaffold(
-      appBar: top_navigation_bar(context, _width, _height),
+      appBar: top_navigation_bar(context, _width, _height,_scaffoldKey),
       body: !Responsive.isMobileScreen(context)
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,

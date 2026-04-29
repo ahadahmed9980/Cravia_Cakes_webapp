@@ -60,10 +60,11 @@ class Listtile extends StatelessWidget {
               children: [
                 //pic adjust container
                 Container(
-                  // height: 250,
+                 
                   padding: EdgeInsets.all(3),
 
-                  width: double.infinity,
+                  // width: double.infinity,
+                  width: 270,
 
                   decoration: BoxDecoration(
                     color: light,
@@ -99,10 +100,10 @@ class Listtile extends StatelessWidget {
 
                       //image
                       SizedBox(
-                        width: _width,
+                        // width: _width,
 
-                        height: _width * 0.13,
-                        // height: 220,
+                        // height: _width * 0.10,
+                        height: 120,
                         child: CachedNetworkImage(
                           imageUrl: image.trim(),
                           fit: BoxFit.contain,

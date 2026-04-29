@@ -1,4 +1,5 @@
 import 'package:cravia_cakes/bindings/category_products_binding.dart';
+
 import 'package:cravia_cakes/bindings/home_bindings.dart';
 
 import 'package:cravia_cakes/screens/category_products.dart';
@@ -20,7 +21,7 @@ class AppRoutes {
     GetPage(
       name: "/category/cakes/detail",
       page: () => ProductDetailPage(),
-      
+      // binding: DetailPageBinding(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 400),
       

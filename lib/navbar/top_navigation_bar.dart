@@ -5,7 +5,10 @@ import 'package:cravia_cakes/navbar/desktop_navbar.dart';
 import 'package:cravia_cakes/navbar/mobile_navbar.dart';
 import 'package:flutter/material.dart';
 
-AppBar top_navigation_bar(BuildContext context, double _width, double _height) {
+AppBar top_navigation_bar(BuildContext context, double _width, double _height,GlobalKey<ScaffoldState> scaffoldKey
+
+
+) {
   // double _width = MediaQuery.of(context).size.width;
   // double _height = MediaQuery.of(context).size.height;
   return AppBar(    automaticallyImplyLeading: false,
@@ -15,7 +18,7 @@ AppBar top_navigation_bar(BuildContext context, double _width, double _height) {
     // toolbarHeight: _height * 0.100,
     title: !Responsive.isMobileScreen(context)
     
-        ? desktop_navbar()
+        ? desktop_navbar(scaffoldKey: scaffoldKey,)
         : MobileNavbar(),
     leading: Responsive.isMobileScreen(context)
     

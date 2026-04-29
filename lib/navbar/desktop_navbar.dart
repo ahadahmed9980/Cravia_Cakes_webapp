@@ -7,7 +7,8 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 
 class desktop_navbar extends StatelessWidget {
-  const desktop_navbar({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  desktop_navbar({super.key, required this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +136,9 @@ class desktop_navbar extends StatelessWidget {
                                     CustomText(
                                       text:
                                           "Search with product name to get better results.",
-                                      color: Colors.grey,size: 13,fontWeight: FontWeight.w300,
+                                      color: Colors.grey,
+                                      size: 13,
+                                      fontWeight: FontWeight.w300,
                                     ),
                                   ],
                                 ),
@@ -194,9 +197,17 @@ class desktop_navbar extends StatelessWidget {
                   height: 22,
                   color: const Color.fromARGB(255, 153, 152, 152),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: _width * 0.006),
-                  child: Icon(Icons.shopping_cart, size: 18, color: whit),
+                InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  onTap: () {
+                    scaffoldKey.currentState?.openEndDrawer();
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: _width * 0.006),
+                    child: Icon(Icons.shopping_cart, size: 18, color: whit),
+                  ),
                 ),
 
                 Icon(Icons.arrow_drop_down, size: 15, color: whit),
