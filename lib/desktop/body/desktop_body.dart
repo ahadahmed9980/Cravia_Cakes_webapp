@@ -41,7 +41,8 @@ class DesktopBody extends StatelessWidget {
 
               padding: EdgeInsets.all(14),
               width: double.infinity,
-              height: _height * 0.35,
+              // height: _height * 0.35,
+              height: 220,
 
               // home category
               child: Obx(() {

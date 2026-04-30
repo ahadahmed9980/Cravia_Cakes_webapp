@@ -177,7 +177,10 @@ class CategoryProductBox extends StatelessWidget {
                     SizedBox(height: _width * 0.003),
                     //add to cart
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        
+
+                      },
                       child: Container(
                         // height: 30,
                         padding: EdgeInsets.all(9),
