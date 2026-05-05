@@ -1,13 +1,16 @@
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/constants/texfieldsearchbar.dart';
+import 'package:cravia_cakes/controllers/cart_controller.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 
 class desktop_navbar extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final cart_controller = Get.find<CartController>();
   desktop_navbar({super.key, required this.scaffoldKey});
 
   @override
@@ -204,9 +207,40 @@ class desktop_navbar extends StatelessWidget {
                   onTap: () {
                     scaffoldKey.currentState?.openEndDrawer();
                   },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: _width * 0.006),
-                    child: Icon(Icons.shopping_cart, size: 18, color: whit),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: _width * 0.006,
+                        ),
+                        child: Icon(Icons.shopping_cart, size: 20, color: whit),
+                      ),
+                      Positioned(
+                        top: -4,
+                        right: 3,
+
+                        child: Obx(
+                          () => Container(
+                            alignment: Alignment.center,
+                            height: 13,
+                            width: 13,
+                            decoration: BoxDecoration(
+                              color: whit,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
+                              ),
+                            ),
+                            child: CustomText(
+                              text: cart_controller.cartitems.length.toString(),
+                              color: dark,
+                              fontWeight: FontWeight.w900,
+                              size: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 

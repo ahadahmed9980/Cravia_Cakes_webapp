@@ -24,7 +24,7 @@ class AppRoutes {
       // binding: DetailPageBinding(),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 400),
-      
     ),
+ 
   ];
 }

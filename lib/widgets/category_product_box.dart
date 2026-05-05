@@ -1,15 +1,20 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
+import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded1.dart';
+import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded2.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/route_manager.dart';
 
 class CategoryProductBox extends StatelessWidget {
   final controller = Get.find<CategoryProductsController>();
-  
+
   int index;
   String title;
   String description;
@@ -26,9 +31,7 @@ class CategoryProductBox extends StatelessWidget {
   });
 
   @override
-  
   Widget build(BuildContext context) {
-   
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
@@ -43,7 +46,6 @@ class CategoryProductBox extends StatelessWidget {
         //inkwell
         () => InkWell(
           onTap: () {
-            
             Get.toNamed(
               "/category/cakes/detail",
               arguments: controller.CategoryProduct[index],
@@ -144,7 +146,6 @@ class CategoryProductBox extends StatelessWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // SizedBox(height: _width * 0.01),
                     CustomText(
                       text: title,
                       color: Colors.black,
@@ -169,7 +170,7 @@ class CategoryProductBox extends StatelessWidget {
                     //price
                     CustomText(
                       text: "Rs. ${price}",
-                      color: Colors.deepOrange,
+                      color: org,
                       size: 17,
                       fontWeight: FontWeight.w900,
                     ),
@@ -177,9 +178,75 @@ class CategoryProductBox extends StatelessWidget {
                     SizedBox(height: _width * 0.003),
                     //add to cart
                     InkWell(
+                      //Dialog box
                       onTap: () {
-                        
+                        Get.dialog(
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Stack(
+                              children: [
+                                BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                    sigmaX: 5,
+                                    sigmaY: 5,
+                                  ),
+                                  child: Container(
+                                    color: Colors.black.withOpacity(
+                                      0.2,
+                                    ), // dark overlay
+                                  ),
+                                ),
+                                Center(
+                                  child: SizedBox(
+                                    width: _width * 0.90,
+                                    height: _width * 0.50,
+                                    child: Dialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
 
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: whit,
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: ProductDetailPageexpanded1(
+                                                images: image,
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Expanded(
+                                              flex: 5,
+                                              child: ProductDetailPageexpanded2(
+                                                title: title,
+                                                description: description,
+                                                price: price,
+                                                image: image,
+
+                                                icons: Icons.close,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          transitionDuration: Duration(milliseconds: 300),
+                          transitionCurve: Curves.easeIn,
+                        );
                       },
                       child: Container(
                         // height: 30,

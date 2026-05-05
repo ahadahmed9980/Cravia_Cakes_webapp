@@ -1,18 +1,35 @@
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
+import 'package:cravia_cakes/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 
 class EndrawerProductBlueprint extends StatelessWidget {
-  const EndrawerProductBlueprint({super.key});
+  final cart_controller = Get.find<CartController>();
+  final name;
+  final quantity;
+  final price;
+  final image;
+  EndrawerProductBlueprint({
+    super.key,
+    required this.name,
+    required this.quantity,
+    required this.price,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final itemName = name ?? "Unknown";
+    final itemQuantity = quantity ?? 1;
+    final itemPrice = price ?? 0;
+    final imageitem = image ?? "";
     return Container(
       height: 135,
       width: double.infinity,
       decoration: BoxDecoration(
-
         border: Border(bottom: BorderSide(color: Colors.grey, width: 0.3)),
       ),
       child: Row(
@@ -31,10 +48,7 @@ class EndrawerProductBlueprint extends StatelessWidget {
                 alignment: Alignment.center,
                 height: 60,
                 width: 60,
-                child: Image.network(
-                  "https://res.cloudinary.com/ddtkuouuw/image/upload/v1774544776/bf49865b-c4fd-4151-b247-ac11a1877e00_1_pzcujd.png",
-                  fit: BoxFit.contain,
-                ),
+                child: Image.network(imageitem, fit: BoxFit.contain),
               ),
             ),
           ),
@@ -45,7 +59,7 @@ class EndrawerProductBlueprint extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: "Ferro Rocher Cake",
+                  text: name,
                   fontWeight: FontWeight.w900,
                   color: Colors.black,
                 ),
@@ -58,7 +72,7 @@ class EndrawerProductBlueprint extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 CustomText(
-                  text: "1x 2 lb",
+                  text: itemQuantity.toString(),
                   fontWeight: FontWeight.w500,
                   color: Colors.grey,
                   size: 15,
@@ -68,7 +82,7 @@ class EndrawerProductBlueprint extends StatelessWidget {
                   children: [
                     Spacer(),
                     CustomText(
-                      text: "Rs. 3,500.00",
+                      text: "Rs. ${itemPrice.toString()}.00",
                       fontWeight: FontWeight.w900,
                       color: Colors.black,
                       size: 15,
@@ -110,7 +124,7 @@ class EndrawerProductBlueprint extends StatelessWidget {
                         border: Border.all(color: Colors.grey),
                       ),
                       child: CustomText(
-                        text: "1",
+                        text: itemQuantity.toString(),
                         color: Colors.black,
                         fontWeight: FontWeight.w900,
                       ),
@@ -135,8 +149,10 @@ class EndrawerProductBlueprint extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(FontAwesomeIcons.solidTrashCan,size: 20,)
+                      onPressed: () {
+                        cart_controller.remove_item(name);
+                      },
+                      icon: FaIcon(FontAwesomeIcons.solidTrashCan, size: 20),
                     ),
                   ],
                 ),

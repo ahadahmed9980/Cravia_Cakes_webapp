@@ -1,10 +1,18 @@
+import 'package:cloudinary_url_gen/transformation/region.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
+import 'package:cravia_cakes/controllers/cart_controller.dart';
 import 'package:cravia_cakes/widgets/end%20drawer/endrawer_product%20_blueprint.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:get/state_manager.dart';
 
 class EndDrawerMain extends StatelessWidget {
-  const EndDrawerMain({super.key});
+  final cart_controller = Get.find<CartController>();
+  EndDrawerMain({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +33,33 @@ class EndDrawerMain extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    EndrawerProductBlueprint(),
-                    SizedBox(height: 10),
-                    EndrawerProductBlueprint(),
+                    Obx(() {
+                      if (cart_controller.cartitems.isEmpty) {
+                        return Center(
+                          child: CustomText(
+                            text: "Your Cart is Empty 😃!",
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        );
+                      } else {
+                        return ListView.builder(
+                          // scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: cart_controller.cartitems.length,
+                          itemBuilder: (context, index) {
+                            final item = cart_controller.cartitems[index];
+                            return EndrawerProductBlueprint(
+                              name: item.name,
+                              quantity: item.quantity,
+                              price: item.price,
+                              image: item.image,
+                            );
+                          },
+                        );
+                      }
+                    }),
                   ],
                 ),
               ),
@@ -54,11 +86,34 @@ class EndDrawerMain extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         size: 20,
                       ),
-                      CustomText(
-                        text: "Clear Cart",
-                        color: dark,
-                        fontWeight: FontWeight.w900,
-                        size: 16,
+                      InkWell(
+                        onTap: () {
+                          if (cart_controller.cartitems.isEmpty) {
+                          } else {
+                            cart_controller.clear_cart();
+                            Get.snackbar(
+                              "Item Removed",
+                              "item has been removed from cart",
+                              snackPosition: SnackPosition.BOTTOM,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 20,
+                              ),
+                              padding: EdgeInsets.all(10),
+                              maxWidth: 300,
+                              borderRadius: 8,
+                              backgroundColor: dark,
+                              colorText: Colors.white,
+                              duration: Duration(seconds: 1),
+                            );
+                          }
+                        },
+                        child: CustomText(
+                          text: "Clear Cart",
+                          color: dark,
+                          fontWeight: FontWeight.w900,
+                          size: 16,
+                        ),
                       ),
                     ],
                   ),
@@ -113,11 +168,14 @@ class EndDrawerMain extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         size: 16,
                       ),
-                      CustomText(
-                        text: "Rs. 1700.00",
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w700,
-                        size: 15,
+                      Obx(
+                        () => CustomText(
+                          text:
+                              "Rs. ${cart_controller.total_bill.value - cart_controller.delivery_fee}.00",
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w700,
+                          size: 15,
+                        ),
                       ),
                     ],
                   ),
@@ -133,7 +191,7 @@ class EndDrawerMain extends StatelessWidget {
                         size: 16,
                       ),
                       CustomText(
-                        text: "Rs. 0.00",
+                        text: "Rs. ${cart_controller.delivery_fee}.00",
                         color: Colors.grey,
                         fontWeight: FontWeight.w700,
                         size: 15,
@@ -176,11 +234,13 @@ class EndDrawerMain extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         size: 18,
                       ),
-                      CustomText(
-                        text: "Rs. 1,700.00",
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
-                        size: 18,
+                      Obx(
+                        () => CustomText(
+                          text: "Rs. ${cart_controller.total_bill.value}.00",
+                          color: Colors.black,
+                          fontWeight: FontWeight.w900,
+                          size: 18,
+                        ),
                       ),
                     ],
                   ),
@@ -188,9 +248,11 @@ class EndDrawerMain extends StatelessWidget {
 
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepOrange, // button ka color
+                      backgroundColor: cart_controller.cartitems.isEmpty
+                          ? Colors.grey
+                          : org, // button ka color
                     ),
-                    onPressed: () {},
+                    onPressed: cart_controller.cartitems.isEmpty ? null : () {},
                     child: Container(
                       alignment: Alignment.center,
                       height: 45,

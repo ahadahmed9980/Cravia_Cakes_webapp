@@ -1,6 +1,7 @@
 import 'package:cloudinary_flutter/cloudinary_context.dart';
 import 'package:cloudinary_flutter/image/cld_image.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
+import 'package:cravia_cakes/controllers/cart_controller.dart';
 import 'package:cravia_cakes/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,10 +9,6 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
-    cloudName: "ddtkuouuw",
-  );
-
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
@@ -24,6 +21,10 @@ void main() async {
       appId: "1:32838483646:web:ddc69d499e6f221467a8ef",
       measurementId: "G-MBPX215WCL",
     ),
+  );
+  Get.put(CartController(), permanent: true);
+  CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
+    cloudName: "ddtkuouuw",
   );
 
   runApp(const MyApp());

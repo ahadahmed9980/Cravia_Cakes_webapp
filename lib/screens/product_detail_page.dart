@@ -4,6 +4,7 @@ import 'package:cravia_cakes/controllers/product_detail_page_controller.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
 import 'package:cravia_cakes/navbar/footer.dart';
 import 'package:cravia_cakes/navbar/top_navigation_bar.dart';
+import 'package:cravia_cakes/widgets/end%20drawer/end_drawer_main.dart';
 import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_page_expanded3.dart';
 import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded1.dart';
 import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded2.dart';
@@ -13,15 +14,15 @@ import 'package:get/get.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final controller = Get.find<ProductDetailPageController>();
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   ProductDetailPage({super.key});
   @override
   Widget build(BuildContext context) {
-   
     String? selectedWeight = "2 LB";
     final product = Get.arguments as Map<String, dynamic>;
 
-    controller.fetchingProducts();
+    // controller.fetchingProducts();
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
@@ -30,7 +31,10 @@ class ProductDetailPage extends StatelessWidget {
     print(controller.product);
 
     return Scaffold(
-      appBar: top_navigation_bar(context, _width, _height,_scaffoldKey),
+      key: _scaffoldKey,
+      appBar: top_navigation_bar(context, _width, _height, _scaffoldKey),
+
+      endDrawer: EndDrawerMain(),
       body: !Responsive.isMobileScreen(context)
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -62,7 +66,7 @@ class ProductDetailPage extends StatelessWidget {
                         vertical: 34,
                       ),
                       width: double.infinity,
-                      // height: 450,
+
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -75,9 +79,10 @@ class ProductDetailPage extends StatelessWidget {
                             title: product["text"] ?? "",
                             description: product["description"] ?? "",
                             price: product["price"] ?? "",
+                            image: product["image"] ?? "",
                           ),
 
-                          SizedBox(width: 110),
+                          SizedBox(width: 25),
                           //expanded 3
                           ProductDetailPageExpanded3(),
                         ],

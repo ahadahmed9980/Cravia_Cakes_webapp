@@ -14,25 +14,131 @@ class BottomNavbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 120,
-            height: 30,
-            decoration: BoxDecoration(color: dark),
-            padding: EdgeInsets.all(2),
-
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomText(
-                  text: "Catageory",
-                  size: 10,
-                  fontWeight: FontWeight.w400,
-                ),
-                Icon(Icons.arrow_drop_down, size: 15, color: whit),
-              ],
+          PopupMenuButton<String>(
+            color: dark,
+            elevation: 5, // Shadow
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
+            child: Container(
+              width: 120,
+              height: 30,
+              decoration: BoxDecoration(color: dark),
+              padding: EdgeInsets.all(2),
+
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(
+                    text: "Catageory",
+                    size: 10,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  Icon(Icons.arrow_drop_down, size: 15, color: whit),
+                ],
+              ),
+            ),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: "Cakes",
+
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Cakes",
+                      fontWeight: FontWeight.w900,
+                      size: 15,
+                      color: whit,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: whit,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: "Pastries",
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Pastries",
+                      fontWeight: FontWeight.w900,
+                      size: 15,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: whit,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: "Cookies",
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Cookies",
+                      fontWeight: FontWeight.w900,
+                      size: 15,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: whit,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: "Brownies",
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Brownies",
+                      fontWeight: FontWeight.w900,
+                      size: 15,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: whit,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: "Cupcakes",
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Cupcakes",
+                      fontWeight: FontWeight.w900,
+                      size: 15,
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: whit,
+                      size: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+
+            onSelected: (value) {
+              print("selected value ${value}");
+            },
           ),
+
           Flexible(
             child: Row(
               children: [
@@ -58,14 +164,7 @@ class BottomNavbar extends StatelessWidget {
               ],
             ),
           ),
-          // Flexible(
-          //   child:
-          //   Container(
-          //     color: Colors.blue,
-          //     width: _width * 0.00001,
-          //     height: 4,
-          //   ),
-          // ),
+
           CustomText(
             text: " ",
             color: Colors.black,

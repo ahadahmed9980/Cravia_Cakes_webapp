@@ -9,14 +9,10 @@ class ProductDetailPageController extends GetxController {
   void onInit() {
     super.onInit();
     // selectedcatageory = Get.arguments ?? "";
-    // fetchingProducts();
+    fetchingProducts();
   }
 
-  @override
-  void onClose() {
-    print("home controller dispose");
-    super.onClose();
-  }
+
 
   var product;
 

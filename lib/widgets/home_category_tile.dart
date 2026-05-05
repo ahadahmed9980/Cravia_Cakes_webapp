@@ -24,9 +24,6 @@ class HomeCategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
-    double _height = MediaQuery.of(context).size.height;
-
     return MouseRegion(
       onEnter: (_) {
         controller.selected_index.value = index;
@@ -38,6 +35,7 @@ class HomeCategoryTile extends StatelessWidget {
         () => GestureDetector(
           onTap: () {
             String slug = title.trim().replaceAll(' ', '-').toLowerCase();
+            //passing category id only here 
             Get.toNamed("/category/$slug", arguments: categoryid);
           },
           child: AspectRatio(
@@ -45,8 +43,7 @@ class HomeCategoryTile extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(right: 15),
               padding: EdgeInsets.all(10),
-              // width: _width * 0.15,
-              // height: _height * 2,
+        
               decoration: BoxDecoration(
                 boxShadow: controller.selected_index.value == index
                     ? [

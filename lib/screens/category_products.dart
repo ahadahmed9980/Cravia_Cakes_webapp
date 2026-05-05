@@ -4,27 +4,27 @@ import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
 import 'package:cravia_cakes/controllers/product_detail_page_controller.dart';
 import 'package:cravia_cakes/helper/responsive.dart';
-import 'package:cravia_cakes/widgets/category_product_box.dart';
+
 import 'package:cravia_cakes/navbar/footer.dart';
 import 'package:cravia_cakes/navbar/top_navigation_bar.dart';
+import 'package:cravia_cakes/widgets/category_product_box.dart';
+import 'package:cravia_cakes/widgets/end%20drawer/end_drawer_main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoryProducts extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
- CategoryProducts({super.key});
+ CategoryProducts({super.key,});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CategoryProductsController>();
-    // final product_detail_page_controller =
-    //     Get.find<ProductDetailPageController>();
     final product_detail_page_controller =
         Get.put(ProductDetailPageController(),permanent: true);
 
     final String data = Get.arguments.toString();
-    controller.selectedProduct = data;
+  //argument controller mai receive ho raha hy 
     product_detail_page_controller.selectedcatageory = data;
     print("thisssssssssssssss ${controller.selectedProduct}");
 
@@ -76,7 +76,9 @@ class CategoryProducts extends StatelessWidget {
       customaspectratio = 0.60;
     }
     return Scaffold(
+      key: _scaffoldKey,
       appBar: top_navigation_bar(context, _width, _height,_scaffoldKey),
+         endDrawer: EndDrawerMain(),
       body: !Responsive.isMobileScreen(context)
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
