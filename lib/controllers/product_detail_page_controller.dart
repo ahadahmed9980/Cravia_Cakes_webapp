@@ -4,15 +4,14 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 class ProductDetailPageController extends GetxController {
-  late String selectedcatageory;
+  var selectedcatageory;
   @override
   void onInit() {
     super.onInit();
-    // selectedcatageory = Get.arguments ?? "";
-    fetchingProducts();
+    product = Get.arguments ?? "";
+
+    // fetchingProducts();
   }
-
-
 
   var product;
 
@@ -49,15 +48,19 @@ class ProductDetailPageController extends GetxController {
 
   Future<void> fetchingProducts() async {
     try {
+      isLoading.value = true;
+      more_related_products.clear();
+
       print("Selected Category: $selectedcatageory");
 
-      isLoading.value = true;
       final firestore = await FirebaseFirestore.instance
           .collection("Category_Cravia")
           .doc(selectedcatageory)
           .collection("Category_Products")
           .get();
+
       print("Docs length: ${firestore.docs.length}");
+
       more_related_products.value = firestore.docs.map((doc) {
         final data = doc.data();
         return {

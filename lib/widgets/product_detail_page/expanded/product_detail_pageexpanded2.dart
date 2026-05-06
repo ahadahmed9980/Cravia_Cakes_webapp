@@ -9,6 +9,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class ProductDetailPageexpanded2 extends StatelessWidget {
+  //instructions
+  var instruction = TextEditingController();
   final IconData? icons;
   final String title;
   final String description;
@@ -212,6 +214,7 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
                         color: Colors.white,
                       ),
                       child: TextField(
+                        controller: instruction,
                         expands: true,
                         maxLines: null,
                         minLines: null,
@@ -372,11 +375,13 @@ class ProductDetailPageexpanded2 extends StatelessWidget {
                           //ad to cart section
                           InkWell(
                             onTap: () {
+                              print("instructions are${instruction.text}");
+
                               cart_controller.addItems(
                                 title,
                                 price * controller.quantity.value,
                                 controller.quantity.value,
-                                image,
+                                image, instruction.text
                               );
                               cart_controller.printitem();
                               Get.snackbar(

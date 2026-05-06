@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cravia_cakes/constants/custom_text.dart';
 import 'package:cravia_cakes/constants/style.dart';
 import 'package:cravia_cakes/controllers/caetgroy_products_controller.dart';
-import 'package:cravia_cakes/controllers/product_detail_page_controller.dart';
 import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded1.dart';
 import 'package:cravia_cakes/widgets/product_detail_page/expanded/product_detail_pageexpanded2.dart';
 import 'package:flutter/material.dart';
@@ -44,11 +43,24 @@ class Listtile extends StatelessWidget {
       child: Obx(
         //inkwell
         () => InkWell(
+          // listtile.dart
           onTap: () {
-            Get.toNamed(
+            // Arguments
+            final args = {
+              "text": title,
+              "image": image,
+              "description": description,
+              "price": price,
+            };
+            print("Arguments: $args");
+
+            Get.offNamed(
               "/category/cakes/detail",
-             arguments:controller.CategoryProduct[index]
+              arguments: args,
+              preventDuplicates: false,
             );
+
+            print("Get.toNamed called!");
           },
           child: Container(
             padding: EdgeInsets.all(8),
@@ -197,7 +209,7 @@ class Listtile extends StatelessWidget {
                                 Center(
                                   child: SizedBox(
                                     width: _width * 0.90,
-                                    height: _width * 0.40,
+                                    height: _width * 0.50,
                                     child: Dialog(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),

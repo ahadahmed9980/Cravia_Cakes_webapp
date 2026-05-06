@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cravia_cakes/models/cart_item.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,7 @@ class CartController extends GetxController {
     update();
   }
 
-  void addItems(String name, int price, int quantity, String image) {
+  void addItems(String name, int price, int quantity, String image,String instructions) {
     int index = cartitems.indexWhere((item) => item.name == name);
     if (index != -1) {
       cartitems[index].quantity += quantity;
@@ -31,7 +30,7 @@ class CartController extends GetxController {
       cartitems.refresh();
     } else {
       cartitems.add(
-        CartItem(name: name, price: price, quantity: quantity, image: image),
+        CartItem(name: name, price: price, quantity: quantity, image: image,instructions: instructions),
       );
       totalbill();
     }
@@ -42,7 +41,7 @@ class CartController extends GetxController {
     for (var i = 0; i < cartitems.length; i++) {
       final item = cartitems[i];
       print(
-        "Item $i: ${item.name} - Qty: ${item.quantity} - Price: ${item.price}",
+        "Item $i: ${item.name} - Qty: ${item.quantity} - Price: ${item.price}, instructions are ${item.instructions}",
       );
     }
   }

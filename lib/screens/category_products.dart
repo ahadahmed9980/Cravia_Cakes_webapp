@@ -21,7 +21,7 @@ class CategoryProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<CategoryProductsController>();
     final product_detail_page_controller =
-        Get.put(ProductDetailPageController(),permanent: true);
+        Get.put(ProductDetailPageController(),);
 
     final String data = Get.arguments.toString();
   //argument controller mai receive ho raha hy 

@@ -20,9 +20,10 @@ class ProductDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? selectedWeight = "2 LB";
-    final product = Get.arguments as Map<String, dynamic>;
+     final product = (Get.arguments as Map<String, dynamic>?) ?? {};
+    controller.product = product;
 
-    // controller.fetchingProducts();
+    controller.fetchingProducts();
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
@@ -78,7 +79,7 @@ class ProductDetailPage extends StatelessWidget {
                           ProductDetailPageexpanded2(
                             title: product["text"] ?? "",
                             description: product["description"] ?? "",
-                            price: product["price"] ?? "",
+                            price: product["price"] ?? 0,
                             image: product["image"] ?? "",
                           ),
 
